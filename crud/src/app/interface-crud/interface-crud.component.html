@@ -11,5 +11,43 @@
     style="width: 500px; height: 150px;"
     class="ag-theme-alpine"
     [rowData]="rowData$"
-    [columnDefs]="columnDefs">
+    [gridOptions]="gridOptions">
 </ag-grid-angular>
+
+<h2 >Agregar Persona</h2>
+
+<form>
+  <label for="">Nombre</label>
+  <input type="text">
+  <label for="">Apellido</label>
+  <input type="text">
+  <label for="">email</label>
+  <input type="email">
+  <label for="">Genero</label>
+  <input type="text">
+  <label for="">Ip</label>
+  <input type="text">
+</form>
+
+
+
+
+<h2 >Persona Seleccionada</h2>
+
+<div *ngIf="personToEdit">
+  <p>Id: {{ personToEdit._id }}</p>
+  <p>Nombre: {{ personToEdit.first_name }}</p>
+  <p>Apellido: {{ personToEdit.last_name }}</p>
+  <p>Email: {{ personToEdit.email }}</p>
+  <p>Genero: {{ personToEdit.gender }}</p>
+  <p>Ip: {{ personToEdit.ip_address }}</p>
+</div>
+
+<!--
+<form>
+first_name
+last_name
+email
+gender
+ip_address
+</form>-->

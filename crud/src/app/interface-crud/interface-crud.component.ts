@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {  PersonDB } from '../interfaces/user';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { PersonDB, Person } from '../interfaces/user';
 import { UsersService } from '../services/users.service';
-import { ColDef } from 'ag-grid-community';
+import { AgGridAngular } from 'ag-grid-angular';
+import { CellClickedEvent, ColDef, GridReadyEvent, GridOptions } from 'ag-grid-community';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -9,9 +10,23 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './interface-crud.component.html',
   styleUrls: ['./interface-crud.component.scss']
 })
+
 export class InterfaceCrudComponent implements OnInit {
 
-    columnDefs: ColDef[] = [
+
+// https://www.ag-grid.com/javascript-data-grid/cell-editing/
+
+
+// https://www.ag-grid.com/javascript-data-grid/components/
+
+  @ViewChild(AgGridAngular) agGrid!: AgGridAngular;
+
+    personToEdit: any;
+
+
+    gridOptions: GridOptions = {
+
+    columnDefs:  [
         {
           headerName: 'Id',
           field: '_id'
@@ -40,7 +55,21 @@ export class InterfaceCrudComponent implements OnInit {
           headerName: 'Value',
           field: '__v'
         }
-    ];
+    ],
+        defaultColDef: {
+            flex: 1,
+            minWidth: 110,
+            editable: true,
+            resizable: true,
+          },
+          onCellEditingStarted: (_event:any) => {
+            this.personToEdit = _event.data;
+            console.log('cellEditingStarted', this.personToEdit, ' id:  '  ,   this.personToEdit.gender);
+          },
+    }
+
+
+
 
 
 nuevaPersona: FormGroup  = this.fb.group({
@@ -80,6 +109,10 @@ nuevaPersona: FormGroup  = this.fb.group({
     }
       this.nuevaPersona.reset();
   }
+
+
+
+
 
 
 }
