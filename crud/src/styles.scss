@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'ag-grid-community/styles/ag-grid.css';
+@import 'ag-grid-community/styles/ag-theme-alpine.css';
+
+html, body {
+    height: 100%;
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
+}
+
+
+ag-grid-angular{
+  width: 100% !important;
+  min-height: 30vh;
+}
+
+
+.ag-theme-alpine {
+    --ag-foreground-color: rgb(1, 19, 68);
+    --ag-background-color: rgb(190, 185, 255);
+    --ag-header-foreground-color: rgb(224, 255, 247);
+    --ag-header-background-color: rgb(13, 0, 71);
+    --ag-odd-row-background-color: rgb(0, 0, 0, 0.03);
+    --ag-header-column-resize-handle-color: rgb(0, 2, 107);
+
+    --ag-font-size: 17px;
+    --ag-font-family: monospace;
+}

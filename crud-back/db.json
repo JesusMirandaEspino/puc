@@ -1,0 +1,8 @@
+{
+"users": [{"id":1,"first_name":"Elora","last_name":"Milton","email":"emilton0@spiegel.de","gender":"Female","ip_address":"70.147.65.34"},
+{"id":2,"first_name":"Zacherie","last_name":"Smallwood","email":"zsmallwood1@mapquest.com","gender":"Genderfluid","ip_address":"101.121.152.128"},
+{"id":3,"first_name":"Isadore","last_name":"Cobbald","email":"icobbald2@usnews.com","gender":"Male","ip_address":"32.95.74.127"},
+{"id":4,"first_name":"Quintin","last_name":"Marquiss","email":"qmarquiss3@ow.ly","gender":"Male","ip_address":"39.112.120.104"},
+{"id":5,"first_name":"Wood","last_name":"Sommer","email":"wsommer4@dyndns.org","gender":"Male","ip_address":"203.216.26.194"}
+]
+}
