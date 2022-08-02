@@ -70,8 +70,51 @@ const getAllUser = async (_req, res = response) => {
         });
     }
 
+    
+
 }
 
+
+const updateUser = async ( req, res = response ) =>{
+
+    console.log( 'llego',req.body );
+
+    try{
+        const { _id, first_name, last_name, email, gender, ip_address } = req.body;
+
+
+        
+
+        const filter = { _id };
+        const update = { first_name, last_name, email, gender, ip_address };
+
+       // await Usuarios.countDocuments(filter); // 0
+
+        let resp = await Usuarios.findOneAndUpdate(filter, update, {
+            upsert: true
+        });
+
+        console.log('resp',resp);
+
+        if(resp){
+        return res.status( 201 ).json({
+                ok: true,
+                msg: 'Update Exitoso'
+        });
+        }
+
+
+    }
+    catch(err){
+        console.log(err);
+        return res.status( 500 ).json({
+            ok: false,
+            msg: 'Consulte con el administrador'
+        });
+    }
+
+
+}
 
 
 
@@ -87,5 +130,6 @@ const getAllUser = async (_req, res = response) => {
 
 module.exports = {
     crearUsuario,
-    getAllUser
+    getAllUser,
+    updateUser
 }

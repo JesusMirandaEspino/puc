@@ -15,7 +15,7 @@ export class UsersService {
   urlDB: string = 'http://localhost:4000/api/auth/users'
 
   urlSave: string = 'http://localhost:4000/api/auth/new';
-
+  urlUpdate: string = 'http://localhost:4000/api/auth/update';
 
 
   constructor( private http: HttpClient  ) {
@@ -36,8 +36,9 @@ export class UsersService {
     return this.http.post<Person>(this.urlSave, params)
   }
 
-  updateNewUser(){
-
+  updateNewUser(params: any){
+    console.log('son los params', params);
+    return this.http.post<Person>(this.urlUpdate, params)
   }
 
 }

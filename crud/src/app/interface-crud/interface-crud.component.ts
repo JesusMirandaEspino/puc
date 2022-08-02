@@ -74,9 +74,9 @@ export class InterfaceCrudComponent implements OnInit {
 
 nuevaPersona: FormGroup  = this.fb.group({
   first_name: [ '', [Validators.required, Validators.minLength(3)  ] ],
-  last_name: [ '', [ Validators.required, Validators.minLength(3) ]],
-  email: [ '', [ Validators.required, Validators.email]],
-  gender: [ '', [Validators.required, Validators.minLength(3)  ] ],
+  last_name:  [ '', [ Validators.required, Validators.minLength(3) ]],
+  email:      [ '', [ Validators.required, Validators.email]],
+  gender:     [ '', [Validators.required, Validators.minLength(3)  ] ],
   ip_address: [ '', [ Validators.required, Validators.minLength(6) ] ]
 
   });
@@ -95,22 +95,33 @@ nuevaPersona: FormGroup  = this.fb.group({
   }
 
 
-  nombreValido(campo: string){
+  validarCampo(campo: string){
     return this.nuevaPersona.controls[campo].errors && this.nuevaPersona.controls[campo].touched
   }
 
   guardar(){
 
-    if( this.nuevaPersona.invalid ){
-      this.nuevaPersona.markAllAsTouched();
-      return;
+    console.log('Persona Seleccionada: ', this.personToEdit);
+
+    const params  = {
+      _id:        this.personToEdit._id,
+      first_name: this.personToEdit.first_name,
+      last_name:  this.personToEdit.last_name,
+      email:      this.personToEdit.email,
+      gender:     this.personToEdit.gender,
+      ip_address: this.personToEdit.ip_address
     }
+
+
+    this.userServices.updateNewUser(params).subscribe( responds  => {
+      console.log(responds);
+      this.getUsers();
       this.nuevaPersona.reset();
+    });
   }
 
 
   crear(){
-
     if( this.nuevaPersona.invalid ){
       this.nuevaPersona.markAllAsTouched();
       return;
@@ -118,15 +129,14 @@ nuevaPersona: FormGroup  = this.fb.group({
 
     const params  = {
       first_name: this.nuevaPersona.controls['first_name'].value,
-      last_name: this.nuevaPersona.controls['last_name'].value,
-      email: this.nuevaPersona.controls['email'].value,
-      gender: this.nuevaPersona.controls['gender'].value,
+      last_name:  this.nuevaPersona.controls['last_name'].value,
+      email:      this.nuevaPersona.controls['email'].value,
+      gender:     this.nuevaPersona.controls['gender'].value,
       ip_address: this.nuevaPersona.controls['ip_address'].value
     }
 
     this.userServices.saveNewUser(params).subscribe( responds  => {
       console.log(responds);
-      console.log( this.nuevaPersona );
       this.getUsers();
       this.nuevaPersona.reset();
     });

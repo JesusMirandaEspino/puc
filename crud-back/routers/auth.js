@@ -1,7 +1,7 @@
 
 const { Router } = require('express');
 const { check } = require('express-validator');
-const { crearUsuario, getAllUser } = require('../controllers/authController');
+const { crearUsuario, getAllUser, updateUser } = require('../controllers/authController');
 const validarCampos = require('../middlewares/validarCampos');
 
 const router = Router();
@@ -22,6 +22,14 @@ router.post( '/new', [
 
 router.get('/users', [], getAllUser);
 
+router.post('/update', [
+        check( 'first_name', 'El nombre es obligatorio' ).not().isEmpty(),
+        check( 'last_name', 'El nombre es obligatorio' ).not().isEmpty(),
+        check( 'email', 'El email es obligatorio' ).isEmail(),
+        check( 'gender', 'El nombre es obligatorio' ).not().isEmpty(),
+        check( 'ip_address', 'El nombre es obligatorio' ).not().isEmpty(),
+        validarCampos
+], updateUser );
 
 
 
