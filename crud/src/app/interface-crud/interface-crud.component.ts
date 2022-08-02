@@ -135,8 +135,8 @@ nuevaPersona: FormGroup  = this.fb.group({
       ip_address: this.nuevaPersona.controls['ip_address'].value
     }
 
-    this.userServices.saveNewUser(params).subscribe( responds  => {
-      console.log(responds);
+    this.userServices.saveNewUser(params).subscribe( res  => {
+      console.log(res);
       this.getUsers();
       this.nuevaPersona.reset();
     });
