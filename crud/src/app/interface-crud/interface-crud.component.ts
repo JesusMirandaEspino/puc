@@ -90,9 +90,7 @@ nuevaPersona: FormGroup  = this.fb.group({
 
   ngOnInit(): void {
 
-    this.userServices.getUsersDB().subscribe( users => {
-      this.rowData$ = users.users;
-    });
+    this.getUsers();
 
   }
 
@@ -111,7 +109,37 @@ nuevaPersona: FormGroup  = this.fb.group({
   }
 
 
+  crear(){
 
+    if( this.nuevaPersona.invalid ){
+      this.nuevaPersona.markAllAsTouched();
+      return;
+    }
+
+    const params  = {
+      first_name: this.nuevaPersona.controls['first_name'].value,
+      last_name: this.nuevaPersona.controls['last_name'].value,
+      email: this.nuevaPersona.controls['email'].value,
+      gender: this.nuevaPersona.controls['gender'].value,
+      ip_address: this.nuevaPersona.controls['ip_address'].value
+    }
+
+    this.userServices.saveNewUser(params).subscribe( responds  => {
+      console.log(responds);
+      console.log( this.nuevaPersona );
+      this.getUsers();
+      this.nuevaPersona.reset();
+    });
+
+
+  }
+
+
+  getUsers(){
+    this.userServices.getUsersDB().subscribe( users => {
+      this.rowData$ = users.users;
+    });
+  }
 
 
 

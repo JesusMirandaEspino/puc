@@ -14,6 +14,10 @@ export class UsersService {
   url: string = 'http://localhost:3000/users';
   urlDB: string = 'http://localhost:4000/api/auth/users'
 
+  urlSave: string = 'http://localhost:4000/api/auth/new';
+
+
+
   constructor( private http: HttpClient  ) {
     // code
   }
@@ -27,5 +31,13 @@ export class UsersService {
     return this.http.get<any>(this.urlDB);
   }
 
+  saveNewUser(params:any){
+    console.log(params);
+    return this.http.post<Person>(this.urlSave, params)
+  }
+
+  updateNewUser(){
+
+  }
 
 }

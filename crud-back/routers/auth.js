@@ -23,4 +23,6 @@ router.post( '/new', [
 router.get('/users', [], getAllUser);
 
 
+
+
 module.exports = router;

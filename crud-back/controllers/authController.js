@@ -6,6 +6,8 @@ const crearUsuario = async (req, res = response) => {
 
     const { first_name, last_name, email, gender, ip_address } = req.body;
 
+        console.log(req.body);
+
     try{
 
         let usuario = await Usuarios.findOne({ email });
@@ -49,7 +51,7 @@ const getAllUser = async (_req, res = response) => {
 
     let users = await Usuarios.find({});
 
-    console.log(users);
+
 
     if(users){
         return res.status( 201 ).json({

@@ -16,17 +16,29 @@
 
 <h2 >Agregar Persona</h2>
 
-<form>
-  <label for="">Nombre</label>
-  <input type="text">
-  <label for="">Apellido</label>
-  <input type="text">
-  <label for="">email</label>
-  <input type="email">
-  <label for="">Genero</label>
-  <input type="text">
-  <label for="">Ip</label>
-  <input type="text">
+<form (submit)="crear()" [formGroup]="nuevaPersona">
+  <div>
+    <label for="">Nombre</label>
+    <input formControlName="first_name" name="first_name" type="text">
+  </div>
+  <div>
+    <label for="">Apellido</label>
+    <input formControlName="last_name" name="last_name" type="text">
+  </div>
+  <div>
+    <label for="">email</label>
+    <input formControlName="email" name="email" type="email">
+  </div>
+  <div>
+    <label for="">Genero</label>
+    <input formControlName="gender" name="gender" type="text">
+  </div>
+  <div>
+    <label for="">Ip</label>
+    <input  formControlName="ip_address" name="ip_address" type="text">
+  </div>
+  <button [disabled]="nuevaPersona.invalid"  type="submit" >Crear</button>
+
 </form>
 
 
@@ -41,7 +53,9 @@
   <p>Email: {{ personToEdit.email }}</p>
   <p>Genero: {{ personToEdit.gender }}</p>
   <p>Ip: {{ personToEdit.ip_address }}</p>
+  <button >Guardar</button>
 </div>
+
 
 <!--
 <form>
